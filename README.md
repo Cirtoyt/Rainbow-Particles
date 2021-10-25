@@ -1,2 +1,2 @@
 # Rainbow-Particles
-Replication the Scanner Sombre effect in Unity.
+Replication of the Scanner Sombre effect in Unity.
