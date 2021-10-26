@@ -13,6 +13,7 @@ public class SpritePivot : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(0, fpsCameraTrans.rotation.eulerAngles.y, 0);
+        //transform.rotation = Quaternion.Euler(0, fpsCameraTrans.rotation.eulerAngles.y, 0);
+        transform.LookAt(fpsCameraTrans);
     }
 }
