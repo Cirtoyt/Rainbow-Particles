@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4601557035761517215}
   - component: {fileID: 4601557035761517212}
   - component: {fileID: 5812156910352276585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad Mesh Renderer Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

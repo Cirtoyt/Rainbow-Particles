@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3152885194268572552}
   - component: {fileID: 3152885194268572553}
   - component: {fileID: 2864055562940788602}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite Renderer Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

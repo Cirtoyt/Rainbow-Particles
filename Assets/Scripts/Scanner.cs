@@ -38,15 +38,11 @@ public class Scanner : MonoBehaviour
     {
         for (int x = 0; x < particlesPerScan; x++)
         {
-            // Old code theory
-            // Get perlin noise x/y coords
-            //float xCoord = x / particlesPerScan;
-            //float yCoord = randomDistributionOffset / randonDistributionScale;
-            //randomDistributionOffset += randomDistributionOffset / (randonDistributionScale * 2);
-
             // Get raycast direction & distance from the centre
             Vector2 randomDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
             float fromCentreDist = Random.Range(0.0f, 1.0f); //Mathf.PerlinNoise(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+            
+            /* Old method
             //float coneMultiplier = scannerFOVAngle / 180;
 
             // Translate raycast direction into forward, right, and up vectors that are scaled by the scanner FOV range cone multiplier
@@ -56,6 +52,8 @@ public class Scanner : MonoBehaviour
             //Vector3 raycastDir = raycastForwardDir + raycastRightDir + raycastUpDir;
             // Create raycast direction from crossproduct between raycast right/up direction and scanner forward direction,
             // then rotating along cross product by random 'from centre distance', scaled by scanner FOV angle
+            */
+
             Vector3 raycastRightUpDir = (scanner.right * randomDir.x) + (scanner.up * randomDir.y);
             Vector3 raycastCrossProduct = Vector3.Cross(scanner.forward, raycastRightUpDir);
             Vector3 raycastDir = Quaternion.AngleAxis((scannerFOVAngle / 2) * fromCentreDist, raycastCrossProduct) * scanner.forward;
