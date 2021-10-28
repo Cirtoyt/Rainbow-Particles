@@ -17,7 +17,6 @@ public class SpritePivot : MonoBehaviour
         if (inverseDirection)
         {
             transform.LookAt(transform.position + (transform.position - fpsCameraTrans.position));
-            //transform.Rotate(transform.up, 180);
         }
         else
         {
