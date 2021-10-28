@@ -1,0 +1,9 @@
+Jobs to do:
+
+- Add circular areas around the player to set colour of materials based on furthest and closest gradient
+- Make colours ramp down when not within player ring range
+- Make particles not rotate towards player as often based on range from player (find/create formula for this)
+- Make rings variable based on average between furthest raycast hit point and player
+- Check for updating in-frame only solutions
+- Possible light source alternative to rotating quads
+- Fix firing through walls
