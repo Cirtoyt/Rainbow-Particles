@@ -346,8 +346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scanner: {fileID: 848894931}
   particlePrefab: {fileID: 3152885194268572566, guid: c843f420b920d3943b0bf37444713171, type: 3}
-  particlesPerScan: 100
-  coneAngleRange: 100
+  particlesPerScan: 50
+  scannerFOVAngle: 60
   scannerSpawnDelay: 0.1
 --- !u!1 &146994079
 GameObject:
