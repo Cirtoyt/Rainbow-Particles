@@ -9,7 +9,7 @@ public class Scanner : MonoBehaviour
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private int particlesPerScan = 100;
     //[SerializeField] private float randonDistributionScale = 100;
-    [SerializeField] [Range(0.1f, 180)] private float coneAngleRange = 60;
+    [SerializeField] [Range(0.1f, 180)] private float scannerFOVAngle = 60;
     [SerializeField] private float scannerSpawnDelay = 0.1f;
 
     private bool isScanning = false;
@@ -38,18 +38,28 @@ public class Scanner : MonoBehaviour
     {
         for (int x = 0; x < particlesPerScan; x++)
         {
+            // Old code theory
             // Get perlin noise x/y coords
             //float xCoord = x / particlesPerScan;
             //float yCoord = randomDistributionOffset / randonDistributionScale;
             //randomDistributionOffset += randomDistributionOffset / (randonDistributionScale * 2);
 
-            float coneMultiplier = coneAngleRange / 180;
-            float xDir = Random.Range(-1f, 1f);
-            float yDir = Random.Range(-1f, 1f);
-            Vector2 randomDir = new Vector2(xDir, yDir).normalized;
-            float centreDist = Mathf.PerlinNoise(Random.Range(0.001f, 0.999f), Random.Range(0.001f, 0.999f));
+            // Get raycast direction & distance from the centre
+            Vector2 randomDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            float centreDist = Random.Range(0.0f, 1.0f); //Mathf.PerlinNoise(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+            float coneMultiplier = scannerFOVAngle / 180;
 
-            Physics.Raycast(scanner.position, scanner.forward + (scanner.right * randomDir.x * centreDist * coneMultiplier) + (scanner.up * randomDir.y * centreDist * coneMultiplier), out RaycastHit hitInfo);
+            // Translate raycast direction into forward, right, and up vectors that are scaled by the scanner FOV range cone multiplier
+            //Vector3 raycastForwardDir = scanner.forward * (1 - coneMultiplier);
+            //Vector3 raycastRightDir = scanner.right * randomDir.x * centreDist * coneMultiplier;
+            //Vector3 raycastUpDir = scanner.up * randomDir.y * centreDist * coneMultiplier;
+            //Vector3 raycastDir = raycastForwardDir + raycastRightDir + raycastUpDir;
+            Vector3 raycastRightUpDir = (scanner.right * randomDir.x) + (scanner.up * randomDir.y);
+            Vector3 raycastCrossProduct = Vector3.Cross(scanner.forward, raycastRightUpDir);
+            Vector3 raycastDir = Quaternion.AngleAxis((scannerFOVAngle / 2) * centreDist, raycastCrossProduct) * scanner.forward;
+
+            // Cast ray and spawn particle at hit point
+            Physics.Raycast(scanner.position, raycastDir, out RaycastHit hitInfo);
             Instantiate(particlePrefab, hitInfo.point, Quaternion.identity);
         }
     }
