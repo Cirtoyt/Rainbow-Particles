@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpritePivot : MonoBehaviour
 {
+    [SerializeField] private bool inverseDirection = false;
     private Transform fpsCameraTrans;
 
     void Start()
@@ -13,7 +14,14 @@ public class SpritePivot : MonoBehaviour
 
     void LateUpdate()
     {
-        //transform.rotation = Quaternion.Euler(0, fpsCameraTrans.rotation.eulerAngles.y, 0);
-        transform.LookAt(fpsCameraTrans);
+        if (inverseDirection)
+        {
+            transform.LookAt(transform.position + (transform.position - fpsCameraTrans.position));
+            //transform.Rotate(transform.up, 180);
+        }
+        else
+        {
+            transform.LookAt(fpsCameraTrans);
+        }
     }
 }
