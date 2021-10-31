@@ -5,11 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField] private float walkSpeedMultiplier = 1;
     [SerializeField] private Camera fpsCamera;
     [SerializeField] private float cameraSpeedMultiplier = 1;
     [SerializeField] [Range(0, 89.99f)] private float topCameraMaxAngle = 90f;
     [SerializeField] [Range(0, 89.99f)] private float bottomCameraMaxAngle = 90f;
+    [Header("References")]
+    [SerializeField] private ParticleManager particleMngr;
 
     private Rigidbody rb;
     private Vector3 moveDirection;
@@ -49,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 velocity = ((cameraForward * moveDirection.z) + (cameraRight * moveDirection.x)) * walkSpeedMultiplier;
         rb.velocity = velocity;
+
+        if (velocity != Vector3.zero)
+        {
+            particleMngr.OnMove();
+        }
     }
 
     private void OnMove(InputValue value)
