@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecaf6fd6a04b17e4e8c7976753067f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleColourStartDepth: 5
-  particleColourEndDepth: 15
+  particleColourStartDepth: 6
+  particleColourEndDepth: 21
   colourGradient:
     serializedVersion: 2
     key0: {r: 0.9960785, g: 0.050980397, b: 0.050980397, a: 1}
@@ -156,3 +156,4 @@ MonoBehaviour:
     m_NumColorKeys: 5
     m_NumAlphaKeys: 2
   updateColourPerFrame: 0
+  colourChangeSmoothing: 0.3

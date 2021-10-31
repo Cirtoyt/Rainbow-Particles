@@ -229,7 +229,13 @@ GameObject:
   m_Component:
   - component: {fileID: 69147504}
   - component: {fileID: 69147505}
-  m_Layer: 0
+  - component: {fileID: 69147511}
+  - component: {fileID: 69147510}
+  - component: {fileID: 69147509}
+  - component: {fileID: 69147508}
+  - component: {fileID: 69147507}
+  - component: {fileID: 69147506}
+  m_Layer: 7
   m_Name: Particle Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,12 +249,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69147503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 80557479}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &69147505
 MonoBehaviour:
@@ -262,40 +268,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798c103523791df49aaf6a56c8c056c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  particleColourStartDepth: 5
-  particleColourEndDepth: 10
-  colourGradient:
-    serializedVersion: 2
-    key0: {r: 0.9960785, g: 0.050980397, b: 0.050980397, a: 1}
-    key1: {r: 0.8962264, g: 0.862888, b: 0.2240566, a: 1}
-    key2: {r: 0.12259703, g: 0.8962264, b: 0.16722894, a: 0}
-    key3: {r: 0.1215686, g: 0.8980392, b: 0.8834332, a: 0}
-    key4: {r: 0.11053756, g: 0.11053756, b: 0.8679245, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 16384
-    ctime2: 32768
-    ctime3: 49151
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 5
-    m_NumAlphaKeys: 2
+--- !u!135 &69147506
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69147503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 21
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &69147507
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69147503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 18
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &69147508
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69147503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &69147509
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69147503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 12
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &69147510
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69147503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 9
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &69147511
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69147503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &80557476
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +360,7 @@ GameObject:
   - component: {fileID: 80557480}
   - component: {fileID: 80557481}
   - component: {fileID: 80557482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -359,6 +409,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441918785}
+  - {fileID: 69147504}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -404,7 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7e8217cf0b88f4e92c7a8f5600a9b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeedMultiplier: 5
+  walkSpeedMultiplier: 3
   fpsCamera: {fileID: 441918784}
   cameraSpeedMultiplier: 8.5
   topCameraMaxAngle: 89.9
@@ -427,6 +478,9 @@ MonoBehaviour:
   particlesPerScan: 50
   scannerFOVAngle: 60
   scannerSpawnDelay: 0.1
+  surfaceLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &146994079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1069,7 @@ GameObject:
   - component: {fileID: 441918784}
   - component: {fileID: 441918783}
   - component: {fileID: 441918786}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FPS Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1419,7 +1473,7 @@ GameObject:
   - component: {fileID: 559346853}
   - component: {fileID: 559346856}
   - component: {fileID: 559346855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1979,7 +2033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661697306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scanner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2299,7 +2353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 848894931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Nozzle Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2329,7 +2383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 912661556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Scanner Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2940,7 +2994,7 @@ GameObject:
   - component: {fileID: 1034065550}
   - component: {fileID: 1034065553}
   - component: {fileID: 1034065552}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

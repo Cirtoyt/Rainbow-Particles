@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         cameraForward.y = 0;
         Vector3 cameraRight = fpsCamera.transform.right;
 
-        Vector3 velocity = ((cameraForward * moveDirection.z) + (cameraRight * moveDirection.x)) * walkSpeedMultiplier;
+        Vector3 velocity = ((cameraForward * moveDirection.z) + (cameraRight * moveDirection.x)).normalized * walkSpeedMultiplier;
         rb.velocity = velocity;
 
         if (velocity != Vector3.zero)

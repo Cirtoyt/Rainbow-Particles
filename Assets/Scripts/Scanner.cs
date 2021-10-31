@@ -11,6 +11,7 @@ public class Scanner : MonoBehaviour
     //[SerializeField] private float randonDistributionScale = 100;
     [SerializeField] [Range(0.1f, 180)] private float scannerFOVAngle = 60;
     [SerializeField] private float scannerSpawnDelay = 0.1f;
+    [SerializeField] private LayerMask surfaceLayer;
 
     private bool isScanning = false;
     //private float randomDistributionOffset = 0;
@@ -59,7 +60,7 @@ public class Scanner : MonoBehaviour
             Vector3 raycastDir = Quaternion.AngleAxis((scannerFOVAngle / 2) * fromCentreDist, raycastCrossProduct) * scanner.forward;
 
             // Cast ray and spawn particle at hit point
-            Physics.Raycast(scanner.position, raycastDir, out RaycastHit hitInfo);
+            Physics.Raycast(scanner.position, raycastDir, out RaycastHit hitInfo, float.PositiveInfinity, surfaceLayer);
             Instantiate(particlePrefab, hitInfo.point, Quaternion.identity);
         }
     }

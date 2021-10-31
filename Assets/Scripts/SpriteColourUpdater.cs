@@ -4,50 +4,79 @@ using UnityEngine;
 
 public class SpriteColourUpdater : MonoBehaviour
 {
-    [SerializeField] private float particleColourStartDepth;
-    [SerializeField] private float particleColourEndDepth;
+    [SerializeField] private float particleColourStartDepth = 3;
+    [SerializeField] private float particleColourEndDepth = 8;
     [SerializeField] private Gradient colourGradient;
     [SerializeField] private bool updateColourPerFrame = false;
+    [SerializeField] private float colourChangeSmoothing = 1;
 
-    private Renderer renderer;
+    private Renderer spriteRenderer;
     private Transform player;
+    private float targetColourPercIdx;
+    private float currentColourPercIdx;
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        spriteRenderer = GetComponent<Renderer>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         // Set first colour based on initial distance
-        UpdateColour();
+        UpdateTargetColourPercIdx();
+        currentColourPercIdx = targetColourPercIdx;
+        UpdateColour(currentColourPercIdx);
     }
 
     void Update()
     {
-        if (updateColourPerFrame) UpdateColour();
+        if (updateColourPerFrame) UpdateColour(targetColourPercIdx);
+
+        if (currentColourPercIdx != targetColourPercIdx)
+        {
+            //Debug.Log("I'm updating!");
+            // Smooth towards target colour over time
+            if (currentColourPercIdx < targetColourPercIdx)
+            {
+                currentColourPercIdx += colourChangeSmoothing * Time.deltaTime;
+                if (currentColourPercIdx > targetColourPercIdx) currentColourPercIdx = targetColourPercIdx;
+            }
+            else
+            {
+                currentColourPercIdx -= colourChangeSmoothing * Time.deltaTime;
+                if (currentColourPercIdx < targetColourPercIdx) currentColourPercIdx = targetColourPercIdx;
+            }
+            //UpdateColour(currentColourPercIdx); or:
+            UpdateParticle();
+        }
     }
 
-    private void UpdateColour()
+    private void UpdateTargetColourPercIdx()
     {
-        // get distance from player
         float distanceFromPlayer = Vector3.Distance(transform.position, player.position);
+
+        // Closer than start depth
+        float colourPercIdx = 0;
+        // In middle of start and end depth
         if (distanceFromPlayer >= particleColourStartDepth && distanceFromPlayer <= particleColourEndDepth)
         {
-            // get scale value based on position between colour start depth and end depth
-            float colourPercIdx = (distanceFromPlayer - particleColourStartDepth) / (particleColourEndDepth - particleColourStartDepth);
-            Debug.Log(colourPercIdx);
-            // index colour from pre-set gradient (maybe serializable field)
-            // set collider's renderer's material colour
-            renderer.material.color = colourGradient.Evaluate(colourPercIdx);
+            colourPercIdx = (distanceFromPlayer - particleColourStartDepth) / (particleColourEndDepth - particleColourStartDepth);
         }
-        else if (distanceFromPlayer < particleColourStartDepth)
+        // Further than end depth
+        else if (distanceFromPlayer > particleColourEndDepth)
         {
-            // index colour from pre-set gradient (maybe serializable field)
-            // set collider's renderer's material colour
-            renderer.material.color = colourGradient.Evaluate(0);
+            colourPercIdx = 1;
         }
-        else
-        {
-            renderer.material.color = colourGradient.Evaluate(1);
-        }
+
+        targetColourPercIdx = colourPercIdx;
+    }
+
+    private void UpdateColour(float percIdx)
+    {
+        spriteRenderer.material.color = colourGradient.Evaluate(percIdx);
+    }
+
+    public void UpdateParticle()
+    {
+        UpdateTargetColourPercIdx();
+        UpdateColour(currentColourPercIdx);
     }
 }
