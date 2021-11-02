@@ -12,6 +12,8 @@ public class Scanner : MonoBehaviour
     [SerializeField] [Range(0.1f, 180)] private float scannerFOVAngle = 60;
     [SerializeField] private float scannerSpawnDelay = 0.1f;
     [SerializeField] private LayerMask surfaceLayer;
+    [SerializeField] private ParticleSystem scannerParticle;
+    
 
     private bool isScanning = false;
     //private float randomDistributionOffset = 0;
@@ -71,10 +73,13 @@ public class Scanner : MonoBehaviour
         {
             scannerSpawnDelayTimer = scannerSpawnDelay;
             isScanning = true;
+            scannerParticle.Play();
         }
         else
         {
             isScanning = false;
+            scannerParticle.Stop();
+            scannerParticle.Clear();
         }
     }
 }
