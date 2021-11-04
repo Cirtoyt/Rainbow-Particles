@@ -9,20 +9,16 @@ public class Scanner : MonoBehaviour
     [SerializeField] private GameObject particlePrefab;
     [SerializeField] private int particlesPerScan = 100;
     //[SerializeField] private float randonDistributionScale = 100;
-    [SerializeField] [Range(0.1f, 180)] private float scannerFOVAngle = 60;
+    [SerializeField] [Range(12, 50)] private float scannerFOVAngle = 60;
     [SerializeField] private float scannerSpawnDelay = 0.1f;
     [SerializeField] private LayerMask surfaceLayer;
-    [SerializeField] private ParticleSystem scannerParticle;
-    
+    [SerializeField] private Transform particleContainer;
+    [SerializeField] private ParticleSystem scannerRayPS;
+
 
     private bool isScanning = false;
     //private float randomDistributionOffset = 0;
     private float scannerSpawnDelayTimer = 0;
-
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -63,8 +59,14 @@ public class Scanner : MonoBehaviour
 
             // Cast ray and spawn particle at hit point
             Physics.Raycast(scanner.position, raycastDir, out RaycastHit hitInfo, float.PositiveInfinity, surfaceLayer);
-            Instantiate(particlePrefab, hitInfo.point, Quaternion.identity);
+            Instantiate(particlePrefab, hitInfo.point, Quaternion.identity, particleContainer);
         }
+    }
+
+    private void UpdateScannerRayPSAngle()
+    {
+        ParticleSystem.ShapeModule scannerRayPSShape = scannerRayPS.shape;
+        scannerRayPSShape.angle = scannerFOVAngle / 2;
     }
 
     private void OnScan(InputValue value)
@@ -73,13 +75,30 @@ public class Scanner : MonoBehaviour
         {
             scannerSpawnDelayTimer = scannerSpawnDelay;
             isScanning = true;
-            scannerParticle.Play();
+            UpdateScannerRayPSAngle();
+            scannerRayPS.Play();
         }
         else
         {
             isScanning = false;
-            scannerParticle.Stop();
-            scannerParticle.Clear();
+            scannerRayPS.Stop();
+            scannerRayPS.Clear();
+        }
+    }
+
+    private void OnResizeScannerFOVAngle(InputValue value)
+    {
+        Vector2 scrollDelta = value.Get<Vector2>();
+        scannerFOVAngle += -scrollDelta.y / 60;
+        scannerFOVAngle = Mathf.Clamp(scannerFOVAngle, 12, 50);
+        UpdateScannerRayPSAngle();
+    }
+
+    private void OnResetRoom()
+    {
+        foreach(Transform p in particleContainer)
+        {
+            Destroy(p.gameObject);
         }
     }
 }
