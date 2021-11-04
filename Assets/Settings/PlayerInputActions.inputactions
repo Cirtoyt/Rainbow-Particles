@@ -44,6 +44,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "EndGame",
+                    "type": "Button",
+                    "id": "3176854a-de23-4144-84f0-faf42b35e56d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -143,6 +151,17 @@
                     "processors": "",
                     "groups": "Keyboard & Mouse",
                     "action": "Resize Scanner FOV Angle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2e6fe1d-9b0d-433b-bfa1-ecdba9263e56",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "EndGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

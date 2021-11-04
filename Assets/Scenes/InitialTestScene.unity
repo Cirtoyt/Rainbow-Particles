@@ -3430,15 +3430,17 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Walk - WASD
+  m_Text: 'Exit Game - Esc
+
+    Walk - WASD
 
     Look - Mouse
 
 
-    Use Scanner - LMB
+    Use Scanner -
+    LMB
 
-    Scan Size -
-    Mouse Scroll
+    Scan Size - Mouse Scroll
 
     Reset Scanned Particles - R'
 --- !u!222 &1111332178

@@ -101,4 +101,9 @@ public class Scanner : MonoBehaviour
             Destroy(p.gameObject);
         }
     }
+
+    private void EndGame()
+    {
+        Application.Quit();
+    }
 }
